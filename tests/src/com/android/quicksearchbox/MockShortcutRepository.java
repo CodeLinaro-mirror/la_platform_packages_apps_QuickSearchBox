@@ -16,7 +16,7 @@
 
 package com.android.quicksearchbox;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -31,17 +31,15 @@ public class MockShortcutRepository implements ShortcutRepository {
     public void close() {
     }
 
-    public SuggestionCursor getShortcutsForQuery(String query, List<Corpus> corporaToQuery,
-            int maxShortcuts) {
+    public ShortcutCursor getShortcutsForQuery(String query, Collection<Corpus> corporaToQuery) {
         // TODO: should look at corporaToQuery
-        DataSuggestionCursor cursor = new DataSuggestionCursor(query);
-        SuggestionData s1 = new SuggestionData(MockSource.SOURCE_1);
-        s1.setText1(query + "_1_shortcut");
-        SuggestionData s2 = new SuggestionData(MockSource.SOURCE_2);
-        s2.setText1(query + "_2_shortcut");
-        cursor.add(s1);
-        cursor.add(s2);
+        ShortcutCursor cursor = new ShortcutCursor(query, null, null, null);
+        cursor.add(MockSource.SOURCE_1.createSuggestion(query + "_1_shortcut"));
+        cursor.add(MockSource.SOURCE_2.createSuggestion(query + "_2_shortcut"));
         return cursor;
+    }
+
+    public void updateShortcut(Source source, String shortcutId, SuggestionCursor refreshed) {
     }
 
     public Map<String, Integer> getCorpusScores() {

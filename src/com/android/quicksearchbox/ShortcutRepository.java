@@ -16,7 +16,7 @@
 
 package com.android.quicksearchbox;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -51,11 +51,18 @@ public interface ShortcutRepository {
      *
      * @param query The query. May be empty.
      * @param allowedCorpora The corpora to get shortcuts for.
-     * @param maxShortcuts The maximum number of shortcuts to return.
      * @return A cursor containing shortcutted results for the query.
      */
-    SuggestionCursor getShortcutsForQuery(String query, List<Corpus> allowedCorpora,
-            int maxShortcuts);
+    ShortcutCursor getShortcutsForQuery(String query, Collection<Corpus> allowedCorpora);
+
+    /**
+     * Updates a shortcut in the repository after it's been refreshed.
+     *
+     * @param source The source of the shortcut that's been refreshed
+     * @param shortcutId The ID of the shortcut that's been refershed
+     * @param refreshed The refreshed shortcut suggestion.
+     */
+    void updateShortcut(Source source, String shortcutId, SuggestionCursor refreshed);
 
     /**
      * @return A map for corpus name to score. A higher score means that the corpus

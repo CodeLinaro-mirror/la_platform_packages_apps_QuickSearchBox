@@ -16,39 +16,50 @@
 
 package com.android.quicksearchbox;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
 
 import java.util.ArrayList;
 
 /**
- * A SuggestionCursor that is backed by a list of SuggestionPosition objects.
- * This cursor does not own the SuggestionCursors that the SuggestionPosition
- * objects refer to.
- *
+ * A SuggestionCursor that is backed by a list of Suggestions.
  */
 public class ListSuggestionCursor extends AbstractSuggestionCursorWrapper {
 
+    private static final int DEFAULT_CAPACITY = 16;
+
     private final DataSetObservable mDataSetObservable = new DataSetObservable();
 
-    private final ArrayList<SuggestionPosition> mSuggestions;
+    private final ArrayList<Suggestion> mSuggestions;
 
-    private int mPos;
+    private int mPos = 0;
 
     public ListSuggestionCursor(String userQuery) {
+        this(userQuery, DEFAULT_CAPACITY);
+    }
+
+    @VisibleForTesting
+    public ListSuggestionCursor(String userQuery, Suggestion...suggestions) {
+        this(userQuery, suggestions.length);
+        for (Suggestion suggestion : suggestions) {
+            mSuggestions.add(suggestion);
+        }
+    }
+
+    public ListSuggestionCursor(String userQuery, int capacity) {
         super(userQuery);
-        mSuggestions = new ArrayList<SuggestionPosition>();
-        mPos = 0;
+        mSuggestions = new ArrayList<Suggestion>(capacity);
     }
 
     /**
      * Adds a suggestion from another suggestion cursor.
      *
-     * @param suggestionPos
      * @return {@code true} if the suggestion was added.
      */
-    public boolean add(SuggestionPosition suggestionPos) {
-        mSuggestions.add(suggestionPos);
+    public boolean add(Suggestion suggestion) {
+        mSuggestions.add(suggestion);
         return true;
     }
 
@@ -78,8 +89,8 @@ public class ListSuggestionCursor extends AbstractSuggestionCursorWrapper {
         mSuggestions.remove(mPos);
     }
 
-    public void replaceRow(SuggestionPosition suggestionPos) {
-        mSuggestions.set(mPos, suggestionPos);
+    public void replaceRow(Suggestion suggestion) {
+        mSuggestions.set(mPos, suggestion);
     }
 
     public int getCount() {
@@ -87,13 +98,13 @@ public class ListSuggestionCursor extends AbstractSuggestionCursorWrapper {
     }
 
     @Override
-    protected SuggestionCursor current() {
-        return mSuggestions.get(mPos).current();
+    protected Suggestion current() {
+        return mSuggestions.get(mPos);
     }
 
     @Override
     public String toString() {
-        return "[" + getUserQuery() + "] " + mSuggestions;
+        return getClass().getSimpleName() + "{[" + getUserQuery() + "] " + mSuggestions + "}";
     }
 
     /**

@@ -101,7 +101,7 @@ public abstract class CursorBackedSuggestionCursor implements SuggestionCursor {
 
     @Override
     protected void finalize() {
-        if (!mClosed) {
+        if (mCursor != null && !mClosed) {
             Log.e(TAG, "LEAK! Finalized without being closed: " + toString());
         }
     }

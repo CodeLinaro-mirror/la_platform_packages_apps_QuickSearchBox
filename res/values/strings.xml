@@ -104,4 +104,6 @@
     <!-- Ending quotation marks of the voice search hint -->
     <string name="voice_search_hint_quotation_end">\"</string>
 
+    <!-- No match results when search result is empty -->
+    <string name="no_match_results">No results found.</string>
 </resources>

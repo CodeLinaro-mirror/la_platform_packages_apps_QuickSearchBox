@@ -43,6 +43,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -102,6 +103,11 @@ public abstract class SearchActivityView extends RelativeLayout {
         mSuggestionsView.setOnScrollListener(new InputMethodCloser());
         mSuggestionsView.setOnKeyListener(new SuggestionsViewKeyListener());
         mSuggestionsView.setOnFocusChangeListener(new SuggestListFocusListener());
+        // ListView set a empty view when the search result is null.
+        if (mSuggestionsView instanceof ListView) {
+            View emptyView = findViewById(R.id.empty);
+            ((ListView) mSuggestionsView).setEmptyView(emptyView);
+        }
 
         mSuggestionsAdapter = createSuggestionsAdapter();
         // TODO: why do we need focus listeners both on the SuggestionsView and the individual

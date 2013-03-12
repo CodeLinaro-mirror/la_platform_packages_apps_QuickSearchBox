@@ -172,6 +172,17 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <!-- When the above listview's adapter is null, show the textview's info
+                 to user that is "No match results" -->
+            <TextView
+                android:id="@+id/empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/search_edit_frame"
+                android:layout_marginTop="6dip"
+                android:gravity="center_horizontal"
+                android:text="@string/no_match_results"
+                android:visibility="gone" />
 
         </RelativeLayout>
         <!-- End left_pane -->

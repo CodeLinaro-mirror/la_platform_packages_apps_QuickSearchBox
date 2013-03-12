@@ -398,6 +398,8 @@ public abstract class SearchActivityView extends RelativeLayout {
     /**
      * Dismiss the activity if BACK is pressed when the search box is empty.
      */
+    /* Don't dismiss the activity, only dismiss keyboard */
+    /*
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent event) {
         SearchActivity activity = getActivity();
@@ -418,7 +420,7 @@ public abstract class SearchActivityView extends RelativeLayout {
             }
         }
         return super.dispatchKeyEventPreIme(event);
-    }
+    }*/
 
     /**
      * If the input method is in fullscreen mode, and the selector corpus

@@ -48,7 +48,7 @@ public class SearchableItemsController implements PreferenceController, OnPrefer
     public SearchableItemsController(SearchSettings searchSettings, Corpora corpora,
             Context context) {
         mSearchSettings = searchSettings;
-        mCorpora = corpora;
+        mCorpora = corpora;   
         mContext = context;
     }
 

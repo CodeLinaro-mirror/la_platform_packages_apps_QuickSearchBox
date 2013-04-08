@@ -103,5 +103,6 @@
     <string name="voice_search_hint_quotation_start">\"</string>
     <!-- Ending quotation marks of the voice search hint -->
     <string name="voice_search_hint_quotation_end">\"</string>
-
+    <string name="baidu_search_base" translatable="false">
+        http://m.baidu.com/s?</string>
 </resources>

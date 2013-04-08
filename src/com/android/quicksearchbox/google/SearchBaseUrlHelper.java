@@ -90,7 +90,7 @@ public class SearchBaseUrlHelper implements SharedPreferences.OnSharedPreference
      * @return the base url for searches.
      */
     public String getSearchBaseUrl() {
-        return mContext.getResources().getString(R.string.google_search_base_pattern,
+        return mContext.getResources().getString(R.string.baidu_search_base,
                 getSearchDomain(), GoogleSearch.getLanguage(Locale.getDefault()));
     }
 

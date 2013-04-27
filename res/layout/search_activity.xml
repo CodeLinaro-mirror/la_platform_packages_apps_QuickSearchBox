@@ -53,6 +53,10 @@
 
         <include layout="@layout/corpus_indicator" />
 
+        <!-- Disable fullscreen mode to avoid the bug "DUT on landscape mode
+             then access to Search app then input some words (ex:yyyyy) then long
+             click 'yyyyy',Click Edit then turn DUT left 90 degree then long click
+             'yyyyy' DUT can not pop up the menu"Cut/copy...". -->
         <com.android.quicksearchbox.ui.QueryTextView
             android:id="@+id/search_src_text"
             android:layout_width="0dip"
@@ -73,7 +77,7 @@
             android:textStyle="normal"
             android:textColor="@android:color/primary_text_light"
             android:textColorHint="@color/search_hint"
-            android:imeOptions="actionGo"
+            android:imeOptions="actionGo|flagNoFullscreen"
         />
 
         <ImageButton 

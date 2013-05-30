@@ -113,7 +113,7 @@ public class SuggestionsView extends ListView implements SuggestionsListView<Lis
                     Log.d(TAG, "view height=" + maxHeight + " suggestion height=" +
                             suggestionHeight + " -> maxSuggestions=" + suggestions);
                 }
-                mSuggestionsAdapter.setMaxPromoted(suggestions);
+                mSuggestionsAdapter.setMaxPromoted(10000);
             }
         }
     }

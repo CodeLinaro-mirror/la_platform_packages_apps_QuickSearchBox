@@ -41,7 +41,7 @@ public class Config {
     protected static final long DAY_MILLIS = 86400000L;
 
     private static final int NUM_PROMOTED_SOURCES = 3;
-    private static final int MAX_RESULTS_PER_SOURCE = 50;
+    private static final int MAX_RESULTS_PER_SOURCE = 10000;
     private static final long SOURCE_TIMEOUT_MILLIS = 10000;
 
     private static final int QUERY_THREAD_PRIORITY =

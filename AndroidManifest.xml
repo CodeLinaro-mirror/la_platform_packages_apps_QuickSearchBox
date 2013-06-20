@@ -42,7 +42,8 @@
         <activity android:name=".SearchActivity"
                   android:label="@string/app_name"
                   android:launchMode="singleTask"
-                  android:theme="@style/Theme.QuickSearchBox.Search">
+                  android:theme="@style/Theme.QuickSearchBox.Search"
+                  android:screenOrientation="sensor">
             <!-- Show app icon in Launcher. -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

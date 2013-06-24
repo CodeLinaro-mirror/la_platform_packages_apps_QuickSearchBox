@@ -47,4 +47,5 @@
     <string name="voice_search_hint_title" msgid="9160095960228453779">"請說："</string>
     <string name="voice_search_hint_quotation_start" msgid="5648752104255950621">"「"</string>
     <string name="voice_search_hint_quotation_end" msgid="3400099768332101719">"」"</string>
+    <string name="no_match_results">"找不到任何結果。"</string>
 </resources>

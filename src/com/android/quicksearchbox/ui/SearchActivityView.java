@@ -224,6 +224,7 @@ public abstract class SearchActivityView extends RelativeLayout {
         mQueryTextView.setText(query);
         mQueryTextView.setTextSelection(selectAll);
         mUpdateSuggestions = true;
+        updateUi();
     }
 
     protected SearchActivity getActivity() {

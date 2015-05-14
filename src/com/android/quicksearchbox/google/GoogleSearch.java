@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.provider.Browser;
 import android.text.TextUtils;
 import android.util.Log;
@@ -135,9 +136,19 @@ public class GoogleSearch extends Activity {
 
         try {
             String query_code = getResources().getString(R.string.query_code);
-            String searchUri = mSearchDomainHelper.getSearchBaseUrl()
-                    + "&source=android-" + source
-                    + query_code + URLEncoder.encode(query, "UTF-8");
+            String searchUri = "";
+            if (getResources().getBoolean(
+                    com.android.internal.R.bool.config_regional_search_use_clientid)) {
+                searchUri = mSearchDomainHelper.getSearchBaseUrl()
+                        + "&source=android-" + source
+                        + "&client=" + SystemProperties.get("ro.google.search.client.ms", "")
+                        + query_code + URLEncoder.encode(query, "UTF-8");
+            } else {
+                searchUri = mSearchDomainHelper.getSearchBaseUrl()
+                        + "&source=android-" + source
+                        + query_code + URLEncoder.encode(query, "UTF-8");
+            }
+            Log.i(TAG, " searchUri : " + searchUri);
             Intent launchUriIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(searchUri));
             launchUriIntent.putExtra(Browser.EXTRA_APPLICATION_ID, applicationId);
             launchUriIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

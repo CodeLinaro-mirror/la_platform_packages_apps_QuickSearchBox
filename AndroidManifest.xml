@@ -58,7 +58,8 @@
                 <action android:name="android.search.action.GLOBAL_SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <meta-data android:name="com.android.launcher.toolbar_icon" android:resource="@drawable/ic_google_logo_normal" />
+            <meta-data android:name="com.android.launcher.toolbar_icon"
+                android:resource="@drawable/ic_search_normal" />
         </activity>
 
         <receiver android:name=".SearchWidgetProvider"

@@ -367,7 +367,8 @@ public class SearchActivity extends Activity {
     }
 
     protected SuggestionCursor getCurrentSuggestions() {
-        return mSearchActivityView.getSuggestions().getResult();
+        return mSearchActivityView.getSuggestions() != null ?
+                mSearchActivityView.getSuggestions().getResult() : null;
     }
 
     protected SuggestionPosition getCurrentSuggestions(SuggestionsAdapter<?> adapter, long id) {

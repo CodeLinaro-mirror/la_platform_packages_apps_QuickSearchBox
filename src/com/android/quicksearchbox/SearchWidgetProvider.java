@@ -161,7 +161,7 @@ public class SearchWidgetProvider extends BroadcastReceiver {
         public void updateWidget(Context context,AppWidgetManager appWidgetMgr) {
             if (DBG) Log.d(TAG, "Updating appwidget " + mAppWidgetId);
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.search_widget);
-
+            setOnClickActivityIntent(context, views, R.id.search_icon, mQueryTextViewIntent);
             setOnClickActivityIntent(context, views, R.id.search_widget_text,
                     mQueryTextViewIntent);
             // Voice Search button

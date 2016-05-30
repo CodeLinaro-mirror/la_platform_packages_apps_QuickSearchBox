@@ -49,7 +49,7 @@ import java.util.Random;
  * Search widget provider.
  *
  */
-public class SearchWidgetProvider extends BroadcastReceiver {
+public abstract class SearchWidgetProvider extends BroadcastReceiver {
 
     private static final boolean DBG = false;
     private static final String TAG = "QSB.SearchWidgetProvider";
@@ -59,10 +59,25 @@ public class SearchWidgetProvider extends BroadcastReceiver {
      */
     private static final String WIDGET_SEARCH_SOURCE = "launcher-widget";
 
+    public abstract String getClassName();
+
+    public abstract int getLayoutId();
+
+    public abstract int getLandWidgetId();
+
+    private static String mClassName;
+
+    private static int mLayoutId;
+
+    private static int mLandWidgetId = 0;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (DBG) Log.d(TAG, "onReceive(" + intent.toUri(0) + ")");
         String action = intent.getAction();
+        mClassName = getClassName();
+        mLayoutId = getLayoutId();
+        mLandWidgetId = getLandWidgetId();
         if (AppWidgetManager.ACTION_APPWIDGET_ENABLED.equals(action)) {
             // nothing needs doing
         } else if (AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(action)) {
@@ -100,7 +115,7 @@ public class SearchWidgetProvider extends BroadcastReceiver {
      */
     private static ComponentName myComponentName(Context context) {
         String pkg = context.getPackageName();
-        String cls = pkg + ".SearchWidgetProvider";
+        String cls = pkg + mClassName;
         return new ComponentName(pkg, cls);
     }
 
@@ -160,10 +175,13 @@ public class SearchWidgetProvider extends BroadcastReceiver {
 
         public void updateWidget(Context context,AppWidgetManager appWidgetMgr) {
             if (DBG) Log.d(TAG, "Updating appwidget " + mAppWidgetId);
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.search_widget);
-
+            RemoteViews views = new RemoteViews(context.getPackageName(), mLayoutId);
+            setOnClickActivityIntent(context, views, R.id.search_icon, mQueryTextViewIntent);
             setOnClickActivityIntent(context, views, R.id.search_widget_text,
                     mQueryTextViewIntent);
+            if (mLandWidgetId != 0) {
+                setOnClickActivityIntent(context, views, mLandWidgetId, mQueryTextViewIntent);
+            }
             // Voice Search button
             if (mVoiceSearchIntent != null) {
                 setOnClickActivityIntent(context, views, R.id.search_widget_voice_btn,

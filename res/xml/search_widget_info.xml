@@ -19,6 +19,7 @@
     android:minHeight="40dip"
     android:updatePeriodMillis="0"
     android:previewImage="@drawable/search_widget_preview"
-    android:initialLayout="@layout/search_widget" >
+    android:initialLayout="@layout/search_widget"
+    android:widgetCategory="searchbox">
 
 </appwidget-provider>

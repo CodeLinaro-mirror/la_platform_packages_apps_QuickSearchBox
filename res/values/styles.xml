@@ -81,4 +81,7 @@
         <item name="android:windowExitAnimation">@anim/corpus_selector_close</item>
     </style>
 
+    <style name="SearchActivityBackground" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:background">#72000000</item>
+    </style>
 </resources>

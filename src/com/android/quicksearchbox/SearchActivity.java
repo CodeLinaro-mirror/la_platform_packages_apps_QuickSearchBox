@@ -32,6 +32,7 @@ import com.android.common.Search;
 import com.android.quicksearchbox.ui.SearchActivityView;
 import com.android.quicksearchbox.ui.SuggestionClickListener;
 import com.android.quicksearchbox.ui.SuggestionsAdapter;
+import com.android.quicksearchbox.util.PermissionUtils;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.CharMatcher;
 
@@ -89,6 +90,8 @@ public class SearchActivity extends Activity {
     };
 
     private OnDestroyListener mDestroyListener;
+
+    private static final int PERMISSION_REQUEST_CODE = 1;
 
     /** Called when the activity is first created. */
     @Override
@@ -159,6 +162,20 @@ public class SearchActivity extends Activity {
         mSearchActivityView.start();
 
         recordOnCreateDone();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        PermissionUtils.checkPermissions(this, PERMISSION_REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            int[] grantResults) {
+        if (!PermissionUtils.checkPermissionResult(permissions, grantResults)) {
+            finish();
+        }
     }
 
     protected SearchActivityView setupContentView() {

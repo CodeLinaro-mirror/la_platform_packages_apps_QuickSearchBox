@@ -16,7 +16,7 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Search</string>
-
+    <string name="search_land">SearchLand</string>
     <!-- Toast text shown when the app fails to remove an item from
          the search history. [CHAR_LIMIT=60] -->
     <string name="remove_from_history_failed">Couldn\'t remove item from history.</string>

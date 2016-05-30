@@ -19,7 +19,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SDK_VERSION := 14
+LOCAL_SDK_VERSION := current
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
     guava \
@@ -31,7 +31,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_PACKAGE_NAME := QuickSearchBox
 LOCAL_CERTIFICATE := shared
-
+LOCAL_JAVA_LIBRARIES := org.apache.http.legacy
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags

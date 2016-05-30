@@ -144,7 +144,7 @@ public abstract class SearchActivityView extends RelativeLayout {
     }
 
     protected Drawable getVoiceSearchIcon() {
-        return getResources().getDrawable(R.drawable.ic_btn_speak_now);
+        return getResources().getDrawable(R.drawable.ic_btn_voice_now);
     }
 
     protected VoiceSearch getVoiceSearch() {
@@ -262,7 +262,7 @@ public abstract class SearchActivityView extends RelativeLayout {
             mQueryTextView.setBackgroundDrawable(mQueryTextEmptyBg);
             mQueryTextView.setHint(null);
         } else {
-            mQueryTextView.setBackgroundResource(R.drawable.textfield_search);
+            mQueryTextView.setBackground(null);
         }
     }
 

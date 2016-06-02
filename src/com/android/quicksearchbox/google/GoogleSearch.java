@@ -18,6 +18,7 @@ package com.android.quicksearchbox.google;
 
 import com.android.common.Search;
 import com.android.quicksearchbox.QsbApplication;
+import com.android.quicksearchbox.R;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -133,9 +134,20 @@ public class GoogleSearch extends Activity {
         }
 
         try {
-            String searchUri = mSearchDomainHelper.getSearchBaseUrl()
+            String query_code = getResources().getString(R.string.query_code);
+            String searchUri = "";
+            if (getResources().getBoolean(
+                        R.bool.config_regional_search_use_clientid)) {
+                searchUri = mSearchDomainHelper.getSearchBaseUrl()
                     + "&source=android-" + source
-                    + "&q=" + URLEncoder.encode(query, "UTF-8");
+                    + "&client=" + getResources().getString(R.string.google_clientidbase_ms)
+                    + query_code + URLEncoder.encode(query, "UTF-8");
+            } else {
+               searchUri = mSearchDomainHelper.getSearchBaseUrl()
+                    + "&source=android-" + source
+                    + query_code + URLEncoder.encode(query, "UTF-8");
+            }
+            Log.i(TAG, " searchUri : " + searchUri);
             Intent launchUriIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(searchUri));
             launchUriIntent.putExtra(Browser.EXTRA_APPLICATION_ID, applicationId);
             launchUriIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

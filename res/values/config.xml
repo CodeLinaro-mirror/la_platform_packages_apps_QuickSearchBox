@@ -112,4 +112,8 @@
   <string name="google_suggest_base" translatable="false">
       http://www.google.com/complete/search?hl=%1$s&amp;client=android&amp;q=</string>
 
+  <bool name="config_regional_search_use_clientid">false</bool>
+  <string name="query_code" translatable="false">"&amp;q="</string>
+  <string name="google_clientidbase_ms" translatable="false">"android-metropcs-us"</string>
+
 </resources>

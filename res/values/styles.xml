@@ -82,6 +82,6 @@
     </style>
 
     <style name="SearchActivityBackground" parent="@android:style/Theme.Translucent.NoTitleBar">
-        <item name="android:background">#72000000</item>
+        <item name="android:background">#29000000</item>
     </style>
 </resources>

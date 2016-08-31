@@ -79,7 +79,7 @@
         <activity android:name=".google.GoogleSearch"
                 android:label="@string/google_search_label"
                 android:icon="@mipmap/google_icon"
-                android:theme="@android:style/Theme.NoDisplay"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"
                 android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.WEB_SEARCH" />

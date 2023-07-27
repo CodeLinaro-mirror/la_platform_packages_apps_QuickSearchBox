@@ -60,7 +60,7 @@ protected constructor(private val mViewFactory: SuggestionViewFactory) : Suggest
   @get:Override
   @set:Override
   override var suggestions: Suggestions?
-    get() = mSuggestions!!
+    get() = if (mSuggestions == null) null else mSuggestions
     set(suggestions) {
       if (mSuggestions === suggestions) {
         return
